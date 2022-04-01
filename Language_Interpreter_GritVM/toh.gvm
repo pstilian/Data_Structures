@@ -1,0 +1,43 @@
+# Simple program that calculates minimum steps in towers of hanoi
+# Uses the formula 2^n -1 where n is the number of rings
+# data[0] = number of rings n
+# data[1] = number of steps necessary
+# data[2] = the exponent counter starting at n-1
+# data[3] = base 2
+
+# Check the memory has at least one space (for N), clear the accumulator
+CHECKMEM 1
+CLEAR
+
+#############################
+
+# Sets number of steps taken to zero, the exponent counter to n-1 and initializes base 2
+INSERT 1
+AT 0
+SUBCONST 1
+INSERT 2
+CLEAR
+ADDCONST 2
+INSERT 3
+
+# Works Before loop
+MULMEM 3
+ADDMEM 1
+JUMPREL 3
+
+# Loop Body
+AT 1
+MULMEM 3
+SET 1
+AT 2
+SUBCONST 1
+SET 2
+JUMPNZERO -6
+
+
+AT 1
+SUBCONST 1
+SET 1
+
+ERASE 3
+ERASE 2
